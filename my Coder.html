@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>MyCoder</title>
+</head>
+<body>
+<style>
+*{ 
+ width: 100%;
+ padding: 0;
+ margin: 0;
+ background: #444;
+ color:#fff;
+}
+    
+textarea{height: calc(40vh - 10px);resize:none}
+input{
+ height: calc(7vh - 10px);
+ width: 80%;
+}
+    
+.inp{
+ padding: 10px;
+ margin: 5px 0px 5px 0px;
+ border:1px solid #eee;
+ outline: none;
+}
+.box{
+ width: 95%; 
+ margin-top:10px;
+}
+
+</style>
+<center>
+<div class="box">
+ <textarea class="inp" id="tex1" oninput="code = STrue(this.value,true,hab.value,cod.value);tex2.value = code" placeholder="is Code..."></textarea><br>
+ <textarea class="inp" id="tex2" oninput="code = STrue(this.value,false,hab.value,cod.value);tex1.value = code" placeholder="is Decode..."></textarea><br>
+ <input class="inp" type="text" id="cod" value='' /><input type="button" onclick="cod.value = ''" style="width:9%;margin: 0px 0px 0px 1%;padding: 0px; cursor: pointer;" class="inp" value="Clr" /><input type="button" onclick="cod.value = gen(text2)" style="width:9%;margin: 0px 0px 0px 1%;padding: 0px; cursor: pointer;" class="inp" value="Gen" /><br>
+ <input style="width: 80%;" class="inp" type="text" id="hab" value='ὶpNr7р6;ЬкШIХOбyА^<зhsz)ёdЗ.Я3YеЫийЁQ0нZвkЖЦцфFьТRРXaДэУЧt!%Кo8сK?T:о]*D"=1CA$Ф+x 5ЩшП-E2МfvяОНпqgGn}JчгbVЛ(Вi_Sъ`Ъыj,HИ4@юхЮСГж|mЙluлMаce&{BwUЕWБ#P/9>ЭщL[утмд'><input type="button" onclick="hab.value = ''" style="width:9%;margin: 0px 0px 0px 1%;padding: 0px; cursor: pointer;" class="inp" value="Clr" /><input type="button" onclick="hab.value = gen(habls);" style="width:9%;margin: 0px 0px 0px 1%;padding: 0px; cursor: pointer;" class="inp" value="Gen" />
+</div>
+</center>
+
+<script>
+
+var di = "ἲἳἴἵἶἷἸἹἺἻἼἽἾἿὀὁὂὃὄὅὈὉὊὋὌὍὐὑὒὓὔὕὖὗὙὛὝὟὠὡὢὣὤὥὦὧὨὩὪὫὬὭὮὯὰάὲέὴήὶίὸόὺύὼώᾀ"[parseInt(Math.random()*69)]; 
+var text = 'ʰʱʲʳʴʵʶʷʸʾʿˀˁˉˌˍˎˏːˑ˒˓˔˕˖˗˘˙˚˛˜˝˞˟ˠˡˢˣˤ˥˦˧˨˩˪˫ˬ˭ˮ˯˰˱˲˳˴˵˶˷˸˹˺˻˼˽̴̵̶̷̸̬̭̮̯̰̱̲̳̹̺̻̼͇͈͉͍͎̽̾̿̀́͂̓̈́͆͊͋͌ͅ͏͓͔͕͖͙͚͐͑͒͗͛ͣͤͥͦͧͨͩͪͫͬͭͮͯ͘͜͟͢͝͞͠͡ʹ͵ͺͻͼͽ;΄΅·Ξ҃҄҅҆҈҉ᵃᵄᵅᵆᵇᵈᵜᵉᵊ';
+var text2 = 'ẠạẢảẤấẦầẨẩẪẫẬậẮắẰằẲẳẴẵẶặẸẹẺẻẼẽẾếỀềỂểỄễỆệỈỉỊịỌọỎỏỐốỒồỔổỖỗỘộỚớỜờỞởỠỡỢợỤụỦủỨứỪừỬửỮữỰựỲỳỴỵỶỷỸỹἀἁἂἃἄἅἆἇἈἉἊἋἌἍἎἏἐἑἒἓἔἕἘἙἚἛἜἝἠἡἢἣἤἥἦἧἨἩἪἫἬἭἮἯἰἱἲἳἴἵἶἷἸἹἺἻἼἽἾἿὀὁὂὃὄὅὈὌ';
+    
+var habls = 'ὶpNr7р6;ЬкШIХOбyА^<зhsz)ёdЗ.Я3YеЫийЁQ0нZвkЖЦцфFьТRРXaДэУЧt!%Кo8сK?T:о]*D"=1CA$Ф+x 5ЩшП-E2МfvяОНпqgGn}JчгbVЛ(Вi_Sъ`Ъыj,HИ4@юхЮСГж|mЙluлMаce&{BwUЕWБ#P/9>ЭщL[утмд';
+    
+cod.value = gen(text2);
+ 
+function gen(tet){  
+var d = di;
+while(d.length<=tet.length){
+ var rand = parseInt(Math.random()*tet.length); 
+ var D = 1;
+  
+ for(i=0;d.length>i;i++){
+  if(d[i] == tet[rand]){
+    D = 0;
+  }
+ }
+ if(D){
+   d += tet[rand];
+ }
+}
+return d;
+}
+     
+function STrue(text,flag,habl,code){
+ if(flag){
+  var d = "";
+  for(i=0;i<text.length;i++){
+   for(r=0;r<code.length;r++){
+    if(text[i]==code[r]){d+=habl[r];}
+   }
+  }    
+  return d;
+ }else{
+  var d = "";
+  for(i=0;i<text.length;i++){
+   for(u=0;u<code.length;u++){
+    if(text[i]==habl[u]){d+=code[u];}
+   }
+  }
+  return d;
+ }
+}
+
+</script>
+</body>
+</html>
